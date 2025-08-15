@@ -1,0 +1,28 @@
+
+version: "3.9"
+services:
+  postgres:
+    image: postgres:16
+    container_name: infotrafic-postgres
+    environment:
+      POSTGRES_DB: infotrafic
+      POSTGRES_USER: infotrafic
+      POSTGRES_PASSWORD: infotrafic
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U infotrafic -d infotrafic"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: infotrafic-redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:

@@ -1,0 +1,20 @@
+{
+  "name": "info-trafic",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "postinstall": "npm run -w @infotrafic/web postinstall || true",
+    "dev": "npm run -w @infotrafic/api dev & npm run -w @infotrafic/web dev",
+    "build": "npm run -w @infotrafic/api build && npm run -w @infotrafic/web build",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "eslint": "^9.7.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
+  }
+}
